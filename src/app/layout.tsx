@@ -10,7 +10,7 @@ export default function RootLayout({ children }: Props) {
             <body className="bg-[#f6f7fb]">
                 <div id="app">
                     <Header />
-                    <div className="max-w-screen-xl mx-auto py-10 min-h-[90vh]">{children}</div>
+                    <div className="max-w-screen-xl mx-auto py-10 min-h-[90vh] px-4">{children}</div>
                     <footer className="text-center p-10 bg-black text-white">copyright hb blog.</footer>
                 </div>
             </body>
