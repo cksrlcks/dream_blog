@@ -1,6 +1,6 @@
 import Post from '@/components/Post';
 import OtherPosts from '@/components/PostOther';
-import { getMarkdown, getOtherPost, getPost } from '@/service/posts';
+import { getMarkdown, getOtherPost, getPost, getPosts } from '@/service/posts';
 
 type Props = {
     params: {
@@ -26,4 +26,11 @@ export default async function page({ params: { slug } }: Props) {
             <OtherPosts posts={other} />
         </>
     );
+}
+
+export async function generateStaticParams() {
+    const posts = await getPosts();
+    return posts.map((post) => ({
+        slug: post.path,
+    }));
 }
