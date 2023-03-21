@@ -22,7 +22,7 @@ export default function PostDetail({ post, md }: Props) {
                 <div className="text-slate-500 text-right">{post.date}</div>
             </div>
             <div>
-                <ReactMarkdown children={md} />
+                <ReactMarkdown>{md}</ReactMarkdown>
             </div>
         </div>
     );
