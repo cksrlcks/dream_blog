@@ -1,6 +1,6 @@
 import Post from '@/components/Post';
 import OtherPosts from '@/components/PostOther';
-import { getMarkdown, getOtherPost, getPost, getPosts } from '@/service/posts';
+import { getOtherPost, getPostData, getPosts } from '@/service/posts';
 
 type Props = {
     params: {
@@ -9,10 +9,9 @@ type Props = {
 };
 
 export default async function page({ params: { slug } }: Props) {
-    const postData = getPost(slug);
-    const mdData = getMarkdown(slug);
+    const postData = getPostData(slug);
     const otherData = getOtherPost(slug);
-    const [post, md, other] = await Promise.all([postData, mdData, otherData]);
+    const [post, other] = await Promise.all([postData, otherData]);
     return (
         <>
             {!post ? (
@@ -20,7 +19,7 @@ export default async function page({ params: { slug } }: Props) {
                     <div>포스트를 찾을 수 없습니다.</div>
                 </>
             ) : (
-                <Post post={post} md={md} />
+                <Post post={post} />
             )}
 
             <OtherPosts posts={other} />

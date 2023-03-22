@@ -1,13 +1,8 @@
-import { Post } from '@/types/Post';
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
+import { PostData } from '@/service/posts';
 
-type Props = {
-    post: Post;
-    md: any;
-};
-
-export default function PostDetail({ post, md }: Props) {
+export default function PostDetail({ post }: { post: PostData }) {
     return (
         <div>
             <figure className="aspect-[4/2] bg-slate-300 relative mb-6">
@@ -22,7 +17,7 @@ export default function PostDetail({ post, md }: Props) {
                 <div className="text-slate-500 text-right">{post.date}</div>
             </div>
             <div>
-                <ReactMarkdown>{md}</ReactMarkdown>
+                <ReactMarkdown>{post.content}</ReactMarkdown>
             </div>
         </div>
     );

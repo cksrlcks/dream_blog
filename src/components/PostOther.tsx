@@ -1,4 +1,4 @@
-import { Post } from '@/types/Post';
+import { Post } from '@/service/posts';
 import Link from 'next/link';
 
 export default function OtherPosts({ posts }: { posts: Post[] | undefined }) {

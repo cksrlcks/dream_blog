@@ -1,4 +1,4 @@
-import { Post } from '@/types/Post';
+import { Post } from '@/service/posts';
 import PostCard from './PostCard';
 
 export default function PostList({ posts }: { posts: Post[] }) {

@@ -1,28 +1,19 @@
 'use client';
-
-import { Post } from '@/types/Post';
+import { Post } from '@/service/posts';
 import { useState } from 'react';
 import PostList from './PostList';
 
 export default function PostCategory({ data }: { data: Post[] }) {
-    const [filterd, setFiltered] = useState(data);
+    const [selected, setSelected] = useState('All Posts');
+    const filterd = selected === 'All Posts' ? data : data.filter((post) => post.category === selected);
+    // const category: string[] = ['all'];
+    // for (let i = 0; i < data.length; i++) {
+    //     if (!category.includes(data[i].category)) {
+    //         category.push(data[i].category);
+    //     }
+    // }
 
-    const handleFilter = (category: string) => {
-        setFiltered((prev) => {
-            if (category === 'all') {
-                return data;
-            } else {
-                return data.filter((item) => item.category === category);
-            }
-        });
-    };
-
-    const category: string[] = ['all'];
-    for (let i = 0; i < data.length; i++) {
-        if (!category.includes(data[i].category)) {
-            category.push(data[i].category);
-        }
-    }
+    const category = ['All Posts', ...new Set(data.map((item) => item.category))];
 
     return (
         <div className="flex">
@@ -31,7 +22,7 @@ export default function PostCategory({ data }: { data: Post[] }) {
             </div>
             <div className="pl-10">
                 {category.map((item, index) => (
-                    <div key={index} onClick={() => handleFilter(item)} className="cursor-pointer">
+                    <div key={index} onClick={() => setSelected(item)} className={`cursor-pointer ${selected === item ? 'font-bold' : ''}`}>
                         {item}
                     </div>
                 ))}

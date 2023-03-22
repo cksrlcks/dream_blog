@@ -1,16 +1,13 @@
-import { Post } from '@/types/Post';
-import PostCard from './PostCard';
+import { getFeaturedPosts } from '@/service/posts';
+import PostList from './PostList';
 
-export default function PostSlide({ data }: { data: Post[] }) {
+export default async function PostSlide() {
+    const data = await getFeaturedPosts();
     return (
         <section className="mb-20">
             <h3>You may like</h3>
             <hr className="mt-4 mb-6" />
-            <ul className="grid grid-cols-3 gap-4 gap-y-20">
-                {data.map((item, index) => (
-                    <PostCard item={item} key={index} />
-                ))}
-            </ul>
+            <PostList posts={data} />
         </section>
     );
 }
